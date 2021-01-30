@@ -51,7 +51,7 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input class="inp-style inp-width" type="number" name="" id="total-first-class">
+                    <input class="inp-style inp-width" type="number" name="" id="total-first-class" onchange=updateAll()>
                 </div>
                 <div class="plus-minus-btn">
                     <p><span id="f-class-plus" onclick=firstClassTicket(true)>+</span> <span id="f-class-minus" onclick=firstClassTicket(false)>-</span></p>
@@ -61,7 +61,7 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width" type="number" name="" id="total-eco-class">
+                    <input class="inp-style inp-width" type="number" name="" id="total-eco-class" onchange=updateAll()>
                 </div>
                 <div class="plus-minus-btn">
                     <p><span id="e-class-plus" onclick=ecoClassTicket(true)>+</span> <span id="e-class-minus"  onclick=ecoClassTicket(false)>-</span></p>
@@ -73,7 +73,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$500</p>
+                        <p>$<span id="Subtotal">0</span></p>
                     </div>
                 </div>
 
@@ -82,7 +82,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p>$<span id="totalVat">0</span></p>
                     </div>
                 </div>
                 <hr>
@@ -91,7 +91,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p>$<span id="totalPriceWithVat">0</span></p>
                     </div>
                 </div>
             </div>
@@ -117,6 +117,7 @@
                 firstClassTotal.value--;
                }
            }
+           updateAll();
            console.log(firstClassTotal.value);
        }
     
@@ -133,9 +134,26 @@
                 ecoClassTotal.value--;
                }
            }
+           updateAll();
            console.log(ecoClassTotal.value);
        }
 
+       function updateAll(){
+        const subTotal = document.getElementById("Subtotal");
+        const totalVat = document.getElementById("totalVat");
+        const totalWithVat = document.getElementById("totalPriceWithVat");
+        var totalFirstClassTicket = document.getElementById("total-first-class").value;
+        var totalEcoClassTicket = document.getElementById("total-eco-class").value;
+        var totalFirstClassTicketPrice = totalFirstClassTicket*150;
+        var totalEcoClassTicketPrice = totalEcoClassTicket*100;
+        var totalPrice = totalFirstClassTicketPrice + totalEcoClassTicketPrice;
+        var vat = totalPrice*0.1;
+        subTotal.innerText = totalPrice;
+        totalVat.innerText = vat;
+        var totalPriceWithVat = totalPrice + vat;
+        totalWithVat.innerText = totalPriceWithVat;
+        console.log(totalPrice);
+    }
     </script>
     <!--Thank You-->
 </body>
