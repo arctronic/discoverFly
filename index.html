@@ -32,20 +32,20 @@
             <h3>Booking Flights</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
-                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh" id="from">
             </div>
             <div class="input-group">
                 <label for="">Flying To</label>
-                <input class="inp-style" type="text" name="" placeholder="New York, United States">
+                <input class="inp-style" type="text" name="" placeholder="New York, United States" id="to">
             </div>
             <div class="inputs">
                 <div class="input-group">
                     <label" for="">Departure</label>
-                    <input class="inp-style" type="date" name="">
+                    <input class="inp-style" type="date" name="" id="Departure">
                 </div>
                 <div class="input-group">
                     <label for="">Return</label>
-                    <input class="inp-style" type="date" name="">
+                    <input class="inp-style" type="date" name="" id="Return">
                 </div>
             </div>
             <div class="input-group f-class">
@@ -95,12 +95,12 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button class="btn-style" onclick=confirm()>Book Now</button>
         </div>
 
         <div class="booking-content">
             <h1>discover <br> around the world</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
+            <p id="booking-details">Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
         </div>
     </section>
     <script>
@@ -154,6 +154,31 @@
         totalWithVat.innerText = totalPriceWithVat;
         console.log(totalPrice);
     }
+
+    function confirm(){
+    const textNode = document.getElementById("booking-details");
+    const _from = document.getElementById("from");
+    const _to = document.getElementById("to");
+    const _Departure = document.getElementById("Departure");
+    const _Return = document.getElementById("Return");
+    var totalFirstClassTicket = document.getElementById("total-first-class").value;
+    var totalEcoClassTicket = document.getElementById("total-eco-class").value;
+    const totalVat = document.getElementById("totalVat");
+    const totalWithVat = document.getElementById("totalPriceWithVat");
+    const subTotal = document.getElementById("Subtotal");
+    
+    textNode.style.background = "White";
+    textNode.style.color = "Black";
+    textNode.style.padding = "5% 5%";
+    textNode.style.boxShadow = "5px 5px 10px grey";
+    textNode.style.borderRadius = "10px"
+    textNode.innerText="Ticket Booked\nFlying From: "+_from.value+"\nFlying To: "+_to.value+"\nDeparture Date: "+_Departure.value+"\nReturn Date: "+_Return.value+
+                        "\nTotal First Class Ticket: "+totalFirstClassTicket+" ($"+totalFirstClassTicket*150+")"+
+                        "\nTotal Economic Class Ticket: "+totalEcoClassTicket+" ($"+totalEcoClassTicket*100+")"+
+                        "\nTotal Payment with 10% VAT: "+ totalWithVat.innerText +" ($"+subTotal.innerText+" + $"+totalVat.innerText+")";
+    
+    }
+
     </script>
     <!--Thank You-->
 </body>
