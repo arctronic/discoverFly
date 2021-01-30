@@ -32,20 +32,20 @@
             <h3>Booking Flights</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
-                <input class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh" id="from" required>
+                <input class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh" id="from" onchange=updateAll()>
             </div>
             <div class="input-group">
                 <label for="">Flying To</label>
-                <input class="inp-style" type="text" name="" placeholder="New York, United States" id="to">
+                <input class="inp-style" type="text" name="" placeholder="New York, United States" id="to" onchange=updateAll()>
             </div>
             <div class="inputs">
                 <div class="input-group">
                     <label" for="">Departure</label>
-                    <input class="inp-style" type="date" name="" id="Departure">
+                    <input class="inp-style" type="date" name="" id="Departure" onchange=updateAll()>
                 </div>
                 <div class="input-group">
                     <label for="">Return</label>
-                    <input class="inp-style" type="date" name="" id="Return">
+                    <input class="inp-style" type="date" name="" id="Return" onchange=updateAll()>
                 </div>
             </div>
             <div class="input-group f-class">
@@ -95,7 +95,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style" onclick=confirm()>Book Now</button>
+            <button class="btn-style" onclick=confirm() type="submit">Book Now</button>
         </div>
 
         <div class="booking-content">
@@ -137,22 +137,35 @@
            updateAll();
            console.log(ecoClassTotal.value);
        }
+       function isEmpty(str) {
+            return str.length;
+        }
 
        function updateAll(){
-        const subTotal = document.getElementById("Subtotal");
-        const totalVat = document.getElementById("totalVat");
-        const totalWithVat = document.getElementById("totalPriceWithVat");
-        var totalFirstClassTicket = document.getElementById("total-first-class").value;
-        var totalEcoClassTicket = document.getElementById("total-eco-class").value;
-        var totalFirstClassTicketPrice = totalFirstClassTicket*150;
-        var totalEcoClassTicketPrice = totalEcoClassTicket*100;
-        var totalPrice = totalFirstClassTicketPrice + totalEcoClassTicketPrice;
-        var vat = totalPrice*0.1;
-        subTotal.innerText = totalPrice;
-        totalVat.innerText = vat;
-        var totalPriceWithVat = totalPrice + vat;
-        totalWithVat.innerText = totalPriceWithVat;
-        console.log(totalPrice);
+        var textNode = document.getElementById("booking-details");
+        var _from = document.getElementById("from").value;
+        var _to = document.getElementById("to").value;
+        var _Departure = document.getElementById("Departure").value;
+        var _Return = document.getElementById("Return").value;
+        console.log(_from.length);
+        if( _from.length>0 && _to.length>0 && _Departure.length>0 && _Return.length>0){
+            const subTotal = document.getElementById("Subtotal");
+            const totalVat = document.getElementById("totalVat");
+            const totalWithVat = document.getElementById("totalPriceWithVat");
+            var totalFirstClassTicket = document.getElementById("total-first-class").value;
+            var totalEcoClassTicket = document.getElementById("total-eco-class").value;
+            var totalFirstClassTicketPrice = totalFirstClassTicket*150;
+            var totalEcoClassTicketPrice = totalEcoClassTicket*100;
+            var totalPrice = totalFirstClassTicketPrice + totalEcoClassTicketPrice;
+            var vat = totalPrice*0.1;
+            subTotal.innerText = totalPrice;
+            totalVat.innerText = vat;
+            var totalPriceWithVat = totalPrice + vat;
+            totalWithVat.innerText = totalPriceWithVat;
+            console.log(totalPrice);
+        }else{
+            textNode.innerText="Please select Flying From, Flying To, Departure and Return Date";
+        }
     }
 
     function confirm(){
