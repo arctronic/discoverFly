@@ -32,7 +32,7 @@
             <h3>Booking Flights</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
-                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh" id="from">
+                <input class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh" id="from" required>
             </div>
             <div class="input-group">
                 <label for="">Flying To</label>
@@ -167,16 +167,20 @@
     const totalWithVat = document.getElementById("totalPriceWithVat");
     const subTotal = document.getElementById("Subtotal");
     
+    
+    if(subTotal.innerText!="0"){
     textNode.style.background = "White";
     textNode.style.color = "Black";
     textNode.style.padding = "5% 5%";
     textNode.style.boxShadow = "5px 5px 10px grey";
-    textNode.style.borderRadius = "10px"
+    textNode.style.borderRadius = "10px";
     textNode.innerText="Ticket Booked\nFlying From: "+_from.value+"\nFlying To: "+_to.value+"\nDeparture Date: "+_Departure.value+"\nReturn Date: "+_Return.value+
                         "\nTotal First Class Ticket: "+totalFirstClassTicket+" ($"+totalFirstClassTicket*150+")"+
                         "\nTotal Economic Class Ticket: "+totalEcoClassTicket+" ($"+totalEcoClassTicket*100+")"+
                         "\nTotal Payment with 10% VAT: "+ totalWithVat.innerText +" ($"+subTotal.innerText+" + $"+totalVat.innerText+")";
-    
+    }else{
+        textNode.innerText="Lorem ipsum dolor sit amet consectetur adipisicingelit. Providentvoluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam";
+    }
     }
 
     </script>
